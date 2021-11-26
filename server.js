@@ -30,7 +30,7 @@ app.post("/app/new/", (req, res) => {
 	const stmt = db.prepare("INSERT INTO userinfo(user, pass) VALUES (?, ?)").run(req.body.user, md5(req.body.pass));
 	//res.json({"message": stmt.changes});
 	//res.json({"message":"1 record created: ID 3 (201)"});
-	res.status(201).json(stmt);
+	res.status(201).json({"message": "\"" + stmt.changes + " records created: ID " + stmt.lastInsertRowid});
 });
 
 
